@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "outDir": "dist",
+    "rootDir": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["@playwright/test"],        // 👈 Add this line
+    "lib": ["ESNext", "DOM"],             // 👈 Add this line for Playwright browser context support
+    "moduleResolution": "node"
+  },
+  "include": ["**/*.ts"]                  // 👈 Make sure your test files are included
+}
