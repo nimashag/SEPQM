@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function getUserToken() {
   const response = await axios.post('http://localhost:3003/api/auth/login', {
-    email: 'james@gmail.com',
+    email: 'res@gmail.com',
     password: 'resadmin'
   });
 

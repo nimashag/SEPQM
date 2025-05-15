@@ -10,20 +10,15 @@ const CreateRestaurant: React.FC = () => {
     name: "",
     address: "",
     location: "",
-    image: null as File | null,
   });
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, files } = e.target;
-    if (name === "image" && files) {
-      setForm((prev) => ({ ...prev, image: files[0] }));
-    } else {
-      setForm((prev) => ({ ...prev, [name]: value }));
-    }
-  };
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,19 +28,11 @@ const CreateRestaurant: React.FC = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("name", form.name);
-    formData.append("address", form.address);
-    formData.append("location", form.location);
-    if (form.image) {
-      formData.append("image", form.image);
-    }
-
     try {
-      await axios.post(`${restaurantUrl}/api/restaurants`, formData, {
+      await axios.post(`${restaurantUrl}/api/restaurants`, form, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       });
 
@@ -105,16 +92,7 @@ const CreateRestaurant: React.FC = () => {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-1">Upload Image</label>
-              <input
-                type="file"
-                name="image"
-                accept="image/*"
-                onChange={handleInputChange}
-                className="w-full text-sm text-gray-600 dark:text-gray-400"
-              />
-            </div>
+      
 
             <div className="flex justify-end gap-3 pt-6">
               <button
