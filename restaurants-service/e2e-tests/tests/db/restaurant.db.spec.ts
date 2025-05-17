@@ -71,13 +71,13 @@ test('✅ should delete a restaurant by ID', async () => {
   expect(found).toBeNull();
 });
 
-test('❌ should return null when updating non-existent restaurant', async () => {
+test('should return null when updating non-existent restaurant', async () => {
   const fakeId = new mongoose.Types.ObjectId();
   const result = await Restaurant.findByIdAndUpdate(fakeId, { name: 'Ghost' }, { new: true });
   expect(result).toBeNull();
 });
 
-test('❌ should not create restaurant with missing name', async () => {
+test('should not create restaurant with missing name', async () => {
   let error: any = null;
   try {
     await Restaurant.create({
@@ -93,7 +93,7 @@ test('❌ should not create restaurant with missing name', async () => {
   expect(error.name).toBe('ValidationError');
 });
 
-test('❌ should not create restaurant with invalid userId type', async () => {
+test('should not create restaurant with invalid userId type', async () => {
   let error: any = null;
   try {
     await Restaurant.create({

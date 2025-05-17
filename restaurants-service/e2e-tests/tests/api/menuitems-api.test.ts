@@ -13,7 +13,7 @@ test.describe("Menu Items API Tests", () => {
   });
 
   // ✅ VALID: Add Menu Item
-  test("✅ should add a valid menu item", async ({ request }) => {
+  test("should add a valid menu item", async ({ request }) => {
     const response = await request.post(
       `${BASE_URL}/restaurants/${restaurantId}/menu-items`,
       {
@@ -36,7 +36,7 @@ test.describe("Menu Items API Tests", () => {
   });
 
     // ❌ INVALID: Unauthorized request
-  test('❌ should fail to add a menu item without auth', async ({ request }) => {
+  test('should fail to add a menu item without auth', async ({ request }) => {
     const response = await request.post(`${BASE_URL}/restaurants/${restaurantId}/menu-items`, {
       data: {
         name: 'Unauthorized Pizza',
@@ -50,7 +50,7 @@ test.describe("Menu Items API Tests", () => {
   });
 
   // ✅ VALID: Get menu items by restaurant ID
-  test('✅ should list menu items for a restaurant', async ({ request }) => {
+  test('should list menu items for a restaurant', async ({ request }) => {
     const response = await request.get(`${BASE_URL}/restaurants/${restaurantId}/menu-items`);
     expect(response.status()).toBe(200);
 
@@ -59,7 +59,7 @@ test.describe("Menu Items API Tests", () => {
   });
 
   // ✅ VALID: Get menu item by ID
-  test('✅ should get one menu item by ID', async ({ request }) => {
+  test('should get one menu item by ID', async ({ request }) => {
     const response = await request.get(`${BASE_URL}/restaurants/${restaurantId}/menu-items/${createdItemId}`);
     expect(response.status()).toBe(200);
 
@@ -68,14 +68,14 @@ test.describe("Menu Items API Tests", () => {
   });
 
   // ❌ INVALID: Get non-existing menu item
-  test('❌ should return 404 for non-existing menu item', async ({ request }) => {
+  test('should return 404 for non-existing menu item', async ({ request }) => {
     const fakeId = '662dd2f1e2f1b5b2d4a3e9c9'; // Use a valid ObjectId format but not in DB
     const response = await request.get(`${BASE_URL}/restaurants/${restaurantId}/menu-items/${fakeId}`);
     expect(response.status()).toBe(404);
   });
 
   // ✅ VALID: Update menu item
-  test('✅ should update an existing menu item', async ({ request }) => {
+  test('should update an existing menu item', async ({ request }) => {
     const response = await request.put(`${BASE_URL}/restaurants/${restaurantId}/menu-items/${createdItemId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -92,7 +92,7 @@ test.describe("Menu Items API Tests", () => {
   });
 
   // ❌ INVALID: Update with wrong ID
-  test('❌ should return 404 for updating non-existing item', async ({ request }) => {
+  test('should return 404 for updating non-existing item', async ({ request }) => {
     const fakeId = '662dd2f1e2f1b5b2d4a3e9c9';
     const response = await request.put(`${BASE_URL}/restaurants/${restaurantId}/menu-items/${fakeId}`, {
       headers: {
@@ -107,7 +107,7 @@ test.describe("Menu Items API Tests", () => {
   });
 
   // ✅ VALID: Delete menu item
-  test('✅ should delete a menu item', async ({ request }) => {
+  test('should delete a menu item', async ({ request }) => {
     const response = await request.delete(`${BASE_URL}/restaurants/${restaurantId}/menu-items/${createdItemId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -118,7 +118,7 @@ test.describe("Menu Items API Tests", () => {
   });
 
   // ❌ INVALID: Delete already deleted item
-  test('❌ should return 404 when deleting non-existing item', async ({ request }) => {
+  test('should return 404 when deleting non-existing item', async ({ request }) => {
     const response = await request.delete(`${BASE_URL}/restaurants/${restaurantId}/menu-items/${createdItemId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
