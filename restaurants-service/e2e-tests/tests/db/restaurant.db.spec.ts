@@ -19,7 +19,7 @@ test.afterAll(async () => {
 const userId1 = new mongoose.Types.ObjectId();
 const userId2 = new mongoose.Types.ObjectId();
 
-test('✅ should create a restaurant in the database', async () => {
+test('should create a restaurant in the database', async () => {
   const newRestaurant = await Restaurant.create({
     name: 'Test Pizza Place',
     address: '123 Fake Street',
@@ -31,7 +31,7 @@ test('✅ should create a restaurant in the database', async () => {
   expect(newRestaurant.address).toBe('123 Fake Street');
 });
 
-test('✅ should retrieve all restaurants', async () => {
+test('should retrieve all restaurants', async () => {
   await Restaurant.create([
     { name: 'A', address: '1st Street', location: 'Malabe', userId: userId1 },
     { name: 'B', address: '2nd Street', location: 'Malabe', userId: userId2 }
@@ -41,7 +41,7 @@ test('✅ should retrieve all restaurants', async () => {
   expect(restaurants.length).toBe(2);
 });
 
-test('✅ should update a restaurant by ID', async () => {
+test('should update a restaurant by ID', async () => {
   const restaurant = await Restaurant.create({
     name: 'Old Name',
     address: 'Old Address',
@@ -58,7 +58,7 @@ test('✅ should update a restaurant by ID', async () => {
   expect(updated?.name).toBe('New Name');
 });
 
-test('✅ should delete a restaurant by ID', async () => {
+test('should delete a restaurant by ID', async () => {
   const restaurant = await Restaurant.create({
     name: 'To Be Deleted',
     address: 'Somewhere',
