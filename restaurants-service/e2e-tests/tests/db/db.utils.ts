@@ -1,7 +1,8 @@
-// db.test.ts
+// db.test.ts - handle in memory DB lifecycle
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
+//create an isolated DB instance in memory
 let mongoServer: MongoMemoryServer;
 
 export const connectMockDB = async () => {
